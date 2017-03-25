@@ -1,0 +1,38 @@
+<!--
+  Generated template for the Question page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+      <ion-title>question</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label>Question: {{ (question | async)?.questionTitle }}</ion-label>
+  </ion-item>
+  <ion-list *ngIf="!isAnswered">
+    <button ion-button full block (click)="answerQuestion()">answer</button>
+
+  </ion-list>
+
+  <ion-list *ngIf="isAnswered">
+    <ion-list-header color="light">
+      <h2>Responses</h2>
+    </ion-list-header>
+    <ion-item *ngFor="let answer of answers | async">
+      <h2>{{answer.answer}}</h2>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

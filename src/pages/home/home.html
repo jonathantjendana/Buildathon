@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addQuestion()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    </ion-buttons>
+
+    <ion-title><ion-icon name="ionitron"></ion-icon>&nbsp;&nbsp;Questions</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let question of questions | async" (click)="viewQuestion(question.$key)">
+      <h2>{{question.questionTitle}}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>
