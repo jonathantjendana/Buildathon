@@ -1,3 +1,18 @@
+$purple: #6D5795;
+$white: #f2f2f2;
+$light-purple: #9f8fbd;
+
 page-question {
+    .toolbar-background{
+        background: $purple;
+    }
+
+    .toolbar-title {
+        color: $white;
+    }
+
+    .icon{
+        color: $white;
+    }
 
 }

@@ -8,7 +8,7 @@
 
   <ion-navbar>
 
-      <ion-title>question</ion-title>
+    <ion-title>6 Honesty</ion-title>
 
   </ion-navbar>
 
@@ -16,20 +16,31 @@
 
 
 <ion-content padding>
+  <ion-label>Question:</ion-label>
+  <ion-item text-wrap>
 
-  <ion-item>
-    <ion-label>Question: {{ (question | async)?.questionTitle }}</ion-label>
+    {{ (question | async)?.questionTitle }}
   </ion-item>
-  <ion-list *ngIf="!isAnswered">
-    <button ion-button full block (click)="answerQuestion()">answer</button>
+  <ion-list *ngIf="!isAnswered && !Answering">
 
+    <button ion-button full outline (click)="answerQuestion()">Submit a Response</button>
+    
   </ion-list>
 
+  <ion-list *ngIf="Answering">
+
+    <ion-label>Enter your response here</ion-label>
+    <ion-item no-lines>
+      <ion-textarea [(ngModel)]="answer" placeholder="Your response here">
+      </ion-textarea>
+    </ion-item>
+    <button ion-button full outline (click)="save()">Submit Response</button>
+
+    
+  </ion-list>
   <ion-list *ngIf="isAnswered">
-    <ion-list-header color="light">
-      <h2>Responses</h2>
-    </ion-list-header>
-    <ion-item *ngFor="let answer of answers | async">
+    <ion-label>Responses:</ion-label>
+    <ion-item *ngFor="let answer of answers | async" text-wrap>
       <h2>{{answer.answer}}</h2>
     </ion-item>
   </ion-list>

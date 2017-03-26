@@ -17,6 +17,9 @@ export class QuestionPage {
   questionId: string
   question: FirebaseObjectObservable<any>
   answers: FirebaseListObservable<any>
+  Answering: boolean = false;
+  answer: string
+  showAnswer: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, af: AngularFire, private alertCtrl: AlertController) {
     this.questionId = this.navParams.get('questionId');
     this.question = af.database.object('/app/questions/' + this.questionId);
@@ -26,37 +29,48 @@ export class QuestionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuestionPage');
   }
-
   answerQuestion() {
-    let prompt = this.alertCtrl.create({
-      title: 'Answer',
-      message: "Answer Question",
-      inputs: [
-        {
-          name: 'answer',
-          placeholder: 'Enter your answer here'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.answers.push({
-              answer: data.answer
-            });
-            this.isAnswered = true;
-          }
-        }
-      ]
-    });
-    prompt.present();
+    this.Answering = true;
 
+  }  
+  save(){
+    this.Answering = false;
+    this.answers.push({
+      answer : this.answer
+    })
+    this.isAnswered = true;
   }
+
+  // answerQuestion() {
+  //   let prompt = this.alertCtrl.create({
+  //     title: 'Answer',
+  //     message: "Answer Question",
+  //     inputs: [
+  //       {
+  //         name: 'answer',
+  //         placeholder: 'Enter your answer here'
+  //       },
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         handler: data => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Save',
+  //         handler: data => {
+  //           this.answers.push({
+  //             answer: data.answer
+  //           });
+  //           this.isAnswered = true;
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   prompt.present();
+
+  // }
 
 }

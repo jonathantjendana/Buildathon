@@ -6,15 +6,17 @@
     </button>
     </ion-buttons>
 
-    <ion-title><ion-icon name="ionitron"></ion-icon>&nbsp;&nbsp;Questions</ion-title>
-
+    <ion-title><ion-icon name="ionitron"></ion-icon>&nbsp;&nbsp;Queezy</ion-title>
+      <!--<img alt="logo" height="40" src="../Q.jpg">-->
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+  <ion-label><h4>6 Honesty</h4></ion-label>
   <ion-list>
-    <ion-item *ngFor="let question of questions | async" (click)="viewQuestion(question.$key)">
+
+    <ion-item *ngFor="let question of questions | async" (click)="viewQuestion(question.$key)" text-wrap>
       <h2>{{question.questionTitle}}</h2>
     </ion-item>
   </ion-list>
